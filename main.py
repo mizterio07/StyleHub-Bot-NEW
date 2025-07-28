@@ -24,27 +24,12 @@ def load_deals():
 # === POST TO TELEGRAM ===
 def post_deal():
     global last_post_time
-
-    deals = load_deals()
-    if len(posted_indexes) == len(deals):
-        posted_indexes.clear()
-
-    index = random.choice([i for i in range(len(deals)) if i not in posted_indexes])
-    posted_indexes.add(index)
-    deal = deals[index]
-
-    caption = (
-        f"{deal['title']}\n\n"
-        f"🛍️ Tap here: {deal['ek_link']}\n\n"
-        f"#StyleHubIND #FlipkartFashion"
-    )
-
     try:
-        bot.send_message(CHANNEL_ID, caption)
+        bot.send_message(CHANNEL_ID, "🧪 Test message from StyleHub bot ✅")
         last_post_time = datetime.now().strftime("%d %b %Y %I:%M %p")
-        print(f"✅ Posted: {deal['title']}")
+        print("✅ TEST message posted.")
     except Exception as e:
-        print(f"❌ Error sending message: {e}")
+        print(f"❌ Telegram error: {e}")
 
 # === COMMAND HANDLERS ===
 @bot.message_handler(commands=['start'])
