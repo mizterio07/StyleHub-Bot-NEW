@@ -27,7 +27,7 @@ def post_deal():
 
     deals = load_deals()
     if len(posted_indexes) == len(deals):
-        posted_indexes.clear()  # Reset when all deals are used
+        posted_indexes.clear()
 
     index = random.choice([i for i in range(len(deals)) if i not in posted_indexes])
     posted_indexes.add(index)
@@ -40,7 +40,7 @@ def post_deal():
     )
 
     try:
-        bot.send_photo(CHANNEL_ID, deal["image"], caption=caption)
+        bot.send_message(CHANNEL_ID, caption)
         last_post_time = datetime.now().strftime("%d %b %Y %I:%M %p")
         print(f"✅ Posted: {deal['title']}")
     except Exception as e:
